@@ -5,6 +5,20 @@
     width: device-width;
 }
 
+#font-color {
+
+	&:after {
+		content: '#';
+		display: inline-block;
+		position: absolute;
+		right:-18%;
+		z-index: 1;
+		top:7px;
+		opacity: .4;
+	}
+
+}
+
 .form-inline {
 
 	.form-control {
@@ -35,9 +49,6 @@ hr {
 
 }
 
-form {
-	padding: 2em;
-	min-height: 200px;
-	background-color: lighten(gray, 47);
-	border: 1px solid lighten(gray, 40);
+#result {
+	visibility: hidden;
 }

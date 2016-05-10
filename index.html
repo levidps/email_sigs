@@ -32,6 +32,8 @@
 	</div>
 
 	<div class="col-xs-12 col-sm-6 col-md-6 form-inline clearfix">
+	<form>
+		<p>Personal Details</p>
 		<!-- TEXT INPUT FIELDS -->
 		<span class="col-md-6 col-sm-12" ng-repeat="field in inputs.fields">
 			<label class="control-label col-md-3 col-sm-3 col-xs-3 text-right" for="{{field.text}}">{{field.text}}</label>
@@ -39,20 +41,57 @@
 				<input class="form-control" name="{{field.text}}" ng-model="inputs.fields[$index].outPut"></input>
 			</div>
 		</span>
-		<!-- LOGO INPUT FIELD -->
-		<span class="col-md-6 col-sm-12 col-xs-12">
-			<label class="control-label col-md-3 col-sm-3 col-xs-3 text-right">Logo</label>
-			<div class="col-md-9 col-sm-9 col-xs-8">
-				<input class="form-control" name="logo" ng-model="logo">
+		<!-- BUSINESS DETAILS -->
+		<div>
+			<hr/>
+			<p>Business Details</p>
+			<span class="col-md-6 col-sm-12" ng-repeat="field in inputs.bizFields">
+				<label class="control-label col-md-3 col-sm-3 col-xs-3 text-right" for="{{field.text}}">{{field.text}}</label>
+				<div class="col-md-9 col-sm-9 col-xs-8">
+					<input class="form-control" name="{{field.text}}" ng-model="inputs.bizFields[$index].outPut"></input>
+				</div>
+			</span>
+		</div>
+		<div class="clearfix">
+			<hr/>
+			<p>Design Details</p>
+			<!-- LOGO INPUT FIELD -->
+			<span class="col-md-12 col-sm-12 col-xs-12">
+				<label class="control-label col-md-3 col-sm-3 col-xs-3 text-right">Logo</label>
+				<div class="col-md-9 col-sm-9 col-xs-8">
+					<input class="form-control" name="logo" ng-model="logo">
+				</div>
+			</span>
+			<!-- FONT COLOR -->
+			<span class="col-md-12 col-sm-12 col-xs-12">
+				<label id="font-color" for="color" class="control-label col-md-3 col-sm-3 col-xs-3 text-right">Font Colour</label>
+				<div class="col-md-9 col-sm-9 col-xs-8">
+					<input class="form-control" name="color" ng-model="color">
+				</div>
+			</span>
+			<!-- FONT SELECT -->
+			<div class="clearfix col-md-12 col-sm-12 col-xs-12">
+			    <label class="control-label col-md-3 col-sm-3 col-xs-3 text-right" for="fontSelect"> Select A Font Style: </label><br>
+			    <select class="col-md-9 col-sm-9 col-xs-8" name="fontSelect" ng-model="data.singleSelect">
+			      <option class="form-control" ng-repeat="fontOption in inputs.fonts" value="{{fontOption.value}}">{{fontOption.name}}</option>
+			    </select><br>
 			</div>
-		</span>
-		<!-- FONT SELECT -->
+			<!-- LOGO ORIENTATIION -->
+	      <label for="first">Show first content</label>
+	      <input id="first" type="radio" name="content" ng-model="table" value="vertical">
+	      <br />
+	      <label for="other">Show other content</label>
+	      <input id="other" type="radio" name="content" ng-model="table" value="horizontal">
+		</div>
+		<input type="submit" value="Send Me Signature">
+	</form>
 	</div>
 
 	<hr class="hidden-md hidden-lg hidden-sm col-xs-12 col-sm-6 col-md-6"/>
 
 	<div class="col-xs-12 col-md-6 col-sm-6 col-xs-9 center-block" id="sigWrapper">
-		<div>
+		<!-- Vertical -->
+		<div ng-show="table == 'vertical'" content="vertical">
 			<table cellpadding="50" cellspacing="10">
 				<tbody>
 					<tr>
@@ -60,8 +99,8 @@
 			<table>
 				<tbody>
 					<tr>
-						<td style="padding-bottom: 15px;">
-							<img src="{{logo}}">
+						<td style="padding-bottom: 15px;"> 
+							<a href="http://{{inputs.bizFields[5].outPut}}" target="_blank"><img src="{{logo}}"></a>
 						</td>
 					</tr>
 				</tbody>
@@ -70,7 +109,58 @@
 				<tbody>
 					<tr>
 						<td>
-						<p style="font-family:'helvetica'; margin: 0;" ng-repeat="result in inputs.fields">{{ result.outPut }}</p>
+						<p style="font-family:{{data.singleSelect}}; margin: 0; color: #{{color}};" ng-repeat="result in inputs.fields">{{ result.outPut }}</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table>
+				<tbody>
+					<tr>
+						<td style="padding-top: 12px;">
+						<p style="font-family:{{data.singleSelect}}; margin: 0; color: #{{color}};" ng-repeat="result in inputs.bizFields">{{ result.outPut }}</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<!-- Horizontal -->
+		<div ng-show="table == 'horizontal'" content="horizontal">
+			<table cellpadding="50" cellspacing="10">
+				<tbody>
+					<tr>
+						<td>
+			<table>
+				<tbody>
+					<tr>
+						<td style="padding-bottom: 15px;"> 
+							<a href="http://{{inputs.bizFields[5].outPut}}" target="_blank"><img src="{{logo}}"></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+						</td>
+						<td>
+			<table>
+				<tbody>
+					<tr>
+						<td>
+						<p style="font-family:{{data.singleSelect}}; margin: 0; color: #{{color}};" ng-repeat="result in inputs.fields">{{ result.outPut }}</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table>
+				<tbody>
+					<tr>
+						<td style="padding-top: 12px;">
+						<p style="font-family:{{data.singleSelect}}; margin: 0; color: #{{color}};" ng-repeat="result in inputs.bizFields">{{ result.outPut }}</p>
 						</td>
 					</tr>
 				</tbody>
@@ -82,8 +172,5 @@
 
 		</div>
 	</div>
-	<form id="result" class="col-xs-12 col-md-6 col-sm-6 col-xs-9 center-block">
-		<textarea></textarea>
-	</form>
 </body>
 </html>

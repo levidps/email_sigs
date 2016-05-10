@@ -1,6 +1,15 @@
 @viewport {
   zoom: 1.0;
   width: device-width; }
+#font-color:after {
+  content: '#';
+  display: inline-block;
+  position: absolute;
+  right: -18%;
+  z-index: 1;
+  top: 7px;
+  opacity: .4; }
+
 .form-inline .form-control {
   margin-bottom: 1em;
   width: 100%; }
@@ -19,8 +28,5 @@ hr {
   #sigWrapper {
     float: none; } }
 
-form {
-  padding: 2em;
-  min-height: 200px;
-  background-color: #f8f8f8;
-  border: 1px solid #e6e6e6; }
+#result {
+  visibility: hidden; }
