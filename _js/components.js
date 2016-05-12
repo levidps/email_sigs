@@ -1,50 +1,30 @@
 angular.module('components', [])
 
-  .directive('tabs', function() {
-    return {
-      restrict: 'E',
-      transclude: true,
-      scope: {},
-      controller: function($scope, $element) {
-        var panes = $scope.panes = [];
+  .controller('formFields', function() {
 
-        $scope.select = function(pane) {
-          angular.forEach(panes, function(pane) {
-            pane.selected = false;
-          });
-          pane.selected = true;
-        }
+    var input = this;
 
-        this.addPane = function(pane) {
-          if (panes.length == 0) $scope.select(pane);
-          panes.push(pane);
-        }
-      },
-      template:
-        '<div class="tabbable">' +
-          '<ul class="nav nav-tabs">' +
-            '<li ng-repeat="pane in panes" ng-class="{active:pane.selected}">'+
-              '<a href="" ng-click="select(pane)">{{pane.title}}</a>' +
-            '</li>' +
-          '</ul>' +
-          '<div class="tab-content" ng-transclude></div>' +
-        '</div>',
-      replace: true
-    };
-  })
+    input.fields = [
+      {text: 'name'},
+      {text: 'position'},
+      {text: 'phone'},
+      {text: 'email'}
+    ];
 
-  .directive('pane', function() {
-    return {
-      require: '^tabs',
-      restrict: 'E',
-      transclude: true,
-      scope: { title: '@' },
-      link: function(scope, element, attrs, tabsController) {
-        tabsController.addPane(scope);
-      },
-      template:
-        '<div class="tab-pane" ng-class="{active: selected}" ng-transclude>' +
-        '</div>',
-      replace: true
-    };
-  })
+    input.bizFields = [
+      {text: 'name'},
+      {text: 'location'},
+      {text: 'phone'},
+      {text: 'fax'},
+      {text: 'email'},
+      {text: 'website'}
+    ];
+
+    input.fonts = [
+      {value: 'Helvetica, Arial, sans-serif',     name: 'Arial'},
+      {value: '"Verdana",Trebuchet MS, sans-serif', name: 'Verdana'},
+      {value: '"Courier", "courier new", monospace',  name: 'Monospace'},
+      {value: 'Georgia, Times New Roman, serif',    name: 'Serif'},
+    ];
+
+  });
