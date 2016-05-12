@@ -1,3 +1,3 @@
 **Angular.js Email Signature App**
 
-A basic practice with Angular.js for creating a web based email signature application. Currently far from Alpha development.
+A basic practice with Angular.js for creating a web based email signature application. Currently far from Alpha development. This version is currently 100% unstable and non-functioning.
